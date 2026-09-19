@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lytt</title>
+<style>
+  body { margin: 0; background: #0B1020; color: #F4F6FB; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 480px; margin: 0 auto; padding: 48px 24px; text-align: center; }
+  .logo { width: 96px; height: 96px; border-radius: 48px; background: #1C2A4A; display: inline-flex; align-items: center; justify-content: center; }
+  h1 { font-size: 28px; margin: 16px 0 4px; }
+  p { color: #B4BDD0; line-height: 1.5; }
+  .card { background: #162038; border-radius: 14px; padding: 20px; margin: 24px 0; text-align: left; }
+  .card h2 { font-size: 18px; margin: 0 0 6px; }
+  .card .sub { font-size: 14px; margin: 0; word-break: break-all; }
+  a.btn { display: block; padding: 14px; border-radius: 26px; font-weight: 700; text-decoration: none; margin: 10px 0; }
+  .primary { background: #FF8A3D; color: #0B1020; }
+  .outline { border: 1px solid #F4F6FB; color: #F4F6FB; }
+  .small { font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo"><svg width="48" height="48" viewBox="0 0 24 24" fill="#FF8A3D"><path d="M7 18h2V6H7v12zm4 4h2V2h-2v20zm-8-8h2v-4H3v4zm12 4h2V6h-2v12zm4-8v4h2v-4h-2z"/></svg></div>
+  <h1>Lytt</h1>
+  <p id="intro">Noen delte en podkast med deg via Lytt.</p>
+  <div class="card">
+    <h2 id="title">Podkast</h2>
+    <p class="sub" id="feed"></p>
+  </div>
+  <a class="btn primary" id="open" href="#">Åpne i Lytt</a>
+  <a class="btn outline" href="https://play.google.com/store/apps/details?id=no.gundersen.lytt">Hent Lytt på Google Play</a>
+  <p class="small">Lytt er en podkast- og radioapp for Polestar 4 og Android-telefoner. Har du en annen podkastapp, kan du legge til RSS-adressen over der.</p>
+</main>
+<script>
+  // The link carries the feed (p) and optionally the episode guid (e). Lytt on Android opens
+  // this address directly (App Link); here we show it and offer the lytt:// fallback.
+  var q = new URLSearchParams(location.search);
+  var feed = q.get('p') || '';
+  var guid = q.get('e') || '';
+  document.getElementById('feed').textContent = feed;
+  if (guid) document.getElementById('intro').textContent = 'Noen delte en episode med deg via Lytt.';
+  var params = 'p=' + encodeURIComponent(feed) + (guid ? '&e=' + encodeURIComponent(guid) : '');
+  var play = 'https://play.google.com/store/apps/details?id=no.gundersen.lytt';
+  document.getElementById('open').href = 'intent://open?' + params + '#Intent;scheme=lytt;package=no.gundersen.lytt;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
+  // Try to fetch the feed title for a nicer card (works when the feed allows cross-origin reads).
+  if (feed) fetch(feed).then(function (r) { return r.text(); }).then(function (xml) {
+    var m = xml.match(/<title>(?:<!\[CDATA\[)?([^<\]]+)/);
+    if (m) document.getElementById('title').textContent = m[1].trim();
+  }).catch(function () {});
+</script>
+</body>
+</html>

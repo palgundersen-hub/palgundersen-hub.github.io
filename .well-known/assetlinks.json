@@ -1,0 +1,11 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "no.gundersen.lytt",
+    "sha256_cert_fingerprints": [
+      "83:2A:1D:42:31:CD:3F:2A:21:F1:51:B4:B2:CD:52:74:34:C3:7D:7A:E0:B1:46:A1:55:50:86:12:F9:31:63:A3",
+      "0F:CD:74:18:77:B2:DC:BE:13:B0:17:E0:B7:C6:FD:7E:7C:CE:88:B2:EC:9F:96:0B:20:CD:58:A6:BF:1C:F2:0E"
+    ]
+  }
+}]
