@@ -4,6 +4,8 @@
     "namespace": "android_app",
     "package_name": "no.gundersen.lytt",
     "sha256_cert_fingerprints": [
+      "40:9C:BA:B8:75:EB:FA:B3:09:BA:54:6E:30:97:5B:6B:74:4B:30:5F:27:0E:8D:78:4F:B5:30:1D:26:0F:37:A7",
+      "6F:AD:68:97:E0:5E:9D:A1:8B:1C:84:26:70:9B:DD:B1:45:36:75:DA:B7:89:EF:BA:01:2D:5D:69:18:DA:CE:77",
       "83:2A:1D:42:31:CD:3F:2A:21:F1:51:B4:B2:CD:52:74:34:C3:7D:7A:E0:B1:46:A1:55:50:86:12:F9:31:63:A3",
       "0F:CD:74:18:77:B2:DC:BE:13:B0:17:E0:B7:C6:FD:7E:7C:CE:88:B2:EC:9F:96:0B:20:CD:58:A6:BF:1C:F2:0E"
     ]
